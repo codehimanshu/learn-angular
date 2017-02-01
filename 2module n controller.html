@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<div ng-app="myApp" ng-controller="myCtrl">
+
+		First Name: <input type="text" ng-model="firstName"><br>
+		Last Name: <input type="text" ng-model="lastName"><br>
+		<br>
+		Full Name: {{firstName + " " + lastName}}
+
+		<div ng-init="myCol='lightblue'">
+		<input style="background-color:{{myCol}}"  value="{{myCol}}">
+		</div>
+
+		Initializing variabkles
+		<div ng-init="quantity=1;cost=5">
+		<p>Total in dollar: {{ quantity * cost }}</p>
+		</div>
+
+		Objects in Ang
+		<div ng-init="person={firstName:'John',lastName:'Doe'}">
+		<p>The name is {{ person.lastName }}</p>
+		</div>
+
+		<div ng-init="person={firstName:'John',lastName:'Doe'}">
+		<p>The name is <span ng-bind="person.lastName"></span></p>
+		</div>
+
+		<div ng-init="points=[1,15,19,2,40]">
+		<p>The third result is {{ points[2] }}</p>
+		</div>
+
+		<div w3-test-directive></div>
+
+		<w2-test-directive></w2-test-directive>
+
+		<div class="w1-test-directive"></div>
+
+		<!-- directive: w4-test-directive -->
+
+		<div ng-init="names=['Jani','Hege','Kai']">
+		  <ul>
+		    <li ng-repeat="x in names">
+		      {{ x }}
+		    </li>
+		  </ul>
+		</div>
+
+	</div>
+
+	<script>
+		var app = angular.module('myApp', []);
+
+		app.controller('myCtrl', function($scope) {
+		    $scope.firstName= "John";
+		    $scope.lastName= "Doe";
+		});
+
+		app.directive("w3TestDirective", function() {
+		    return {
+		        template : "I was made in a directive constructor!"
+		    };
+		});
+		app.directive("w2TestDirective", function() {
+		    return {
+		        template : "I was made in a directive constructor!"
+		    };
+		});
+
+		app.directive("w1TestDirective", function() {
+		    return {
+		    	restrict : "C",
+		        template : "I was made in a directive constructor!"
+		    };
+		});
+
+		app.directive("w4TestDirective", function() {
+		    return {
+		    	restrict : "M",
+		    	replace : true,
+		        template : "<p>I was made in a directive constructor!</p>"
+		    };
+		});
+
+	</script>
+
+</body>
+</html>
